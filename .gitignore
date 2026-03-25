@@ -1,0 +1,8 @@
+# Ignore OpenClaw internal files
+.openclaw/
+.clawhub/
+.git/
+skills/
+
+# Ignore bootstrap (one-time setup, not needed in backup)
+BOOTSTRAP.md
