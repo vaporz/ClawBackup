@@ -207,6 +207,15 @@ Think of it like a human reviewing their journal and updating their mental model
 
 The goal: Be helpful without being annoying. Check in a few times a day, do useful background work, but respect quiet time.
 
+## Self-Improvement
+
+使用 self-improvement 技能记录学习心得和错误：
+- 纠正时 → 记到 `.learnings/LEARNINGS.md`
+- 命令失败 → 记到 `.learnings/ERRORS.md`
+- 功能请求 → 记到 `.learnings/FEATURE_REQUESTS.md`
+
+重要经验可以升级到 AGENTS.md、SOUL.md 或 TOOLS.md。
+
 ## Make It Yours
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.

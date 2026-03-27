@@ -35,17 +35,37 @@ Things like:
 
 Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
 
-### 图片识别预处理
+### 图片识别（volc-vision）
 
-使用 volc-vision 识别图片前，先用 ffmpeg 压缩：
-1. 分辨率压到长/宽 ≤ 1000 像素
-2. 转成 webp 格式
+使用 volc-vision API 识别图片内容。
 
+**Skill**: `image-recognition` (已安装在 `/home/zx/.openclaw/skills/image-recognition/`)
+
+#### 预处理图片（推荐）
+
+使用 ffmpeg 压缩，减少体积提高识别速度：
 ```bash
 ffmpeg -i "<原图>" -vf "scale='if(gt(iw,ih),1000,-1)':'if(gt(iw,ih),-1,1000)'" -c:v libwebp -quality 80 "<输出.webp>" -y
 ```
 
 可节省 90%+ 文件大小，识别效果几乎不变。
+
+#### 使用脚本识别
+
+```bash
+export VOLCENGINE_API_TOKEN="your_token"
+
+# 物体检测
+python3 ~/.openclaw/skills/image-recognition/scripts/recognize.py /path/to/image.webp
+
+# 文字识别 (OCR)
+python3 ~/.openclaw/skills/image-recognition/scripts/recognize.py /path/to/image.webp -m ocr
+
+# 场景分类
+python3 ~/.openclaw/skills/image-recognition/scripts/recognize.py /path/to/image.webp -m scene_classification
+```
+
+**可用模型**: `general_object_detection`, `ocr`, `scene_classification`, `face_detection`
 
 ### 图片搜索（火山引擎）
 
