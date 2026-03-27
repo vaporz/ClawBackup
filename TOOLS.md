@@ -35,6 +35,14 @@ Things like:
 
 Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
 
+### Summarize (DeepSeek)
+
+```bash
+OPENAI_API_KEY="sk-49edf038d6f646d5add5c0f53dfc8525" \
+OPENAI_BASE_URL="https://api.deepseek.com" \
+summarize "https://example.com" --model openai/deepseek-chat
+```
+
 ---
 
 Add whatever helps you do your job. This is your cheat sheet.
