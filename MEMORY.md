@@ -172,6 +172,20 @@
 - **Emoji:** 🤖
 - **创建日期:** 2026-03-22
 
+## 其他Agent
+
+OpenClaw系统里有多个独立的agent实例，各自有独立的工作区和Telegram账号：
+
+| Agent | 工作区 | 用途 | Telegram | 归属 |
+|-------|--------|------|----------|------|
+| **main** (Jarvis) | workspace | 私人助理 & 总协调 | @zzxx513_bot | - |
+| **chief-editor** (小策) | workspace-chief-editor | 编辑部主编 | @zzxx513editor_bot | 编辑部管理层 |
+| **writer** | workspace-writer | 写作 | @zzxx513writer_bot | 编辑部 |
+| **arteditor** | workspace-arteditor | 美术编辑 | @zzxx513art_bot | 编辑部 |
+| **infocollecter** | workspace-infocollecter | 信息收集 | @zzxx513info_bot | 编辑部 |
+
+注意：这些是**独立的agent实例**，不是subagent。subagent是从主会话派生的短时任务助手。
+
 ## 重要事件
 
 ### 2026-03-22
@@ -179,6 +193,13 @@
 - 浏览公司网站，了解业务概况
 - 设定助手风格为Jarvis模式
 - 探索D盘"公司资料"文件夹，建立公司资料库索引
+
+### 2026-03-27
+- 架构调整：设立编辑部主编岗位
+- 新增 agent "小策"（chief-editor），负责编辑部日常管理和质量把控
+- 小策统筹 writer、arteditor、infocollecter 三个 agent
+- Jarvis 退守：专注私人助理 + 总协调角色
+- 小策使用 deepseek/deepseek-chat 模型
 
 ### 2026-03-22 (深度分析)
 - 安装文档解析工具：poppler-utils, libreoffice, pandoc, python3-openpyxl
