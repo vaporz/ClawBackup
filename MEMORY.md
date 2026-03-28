@@ -183,6 +183,7 @@ OpenClaw系统里有多个独立的agent实例，各自有独立的工作区和T
 | **writer** | workspace-writer | 写作 | @zzxx513writer_bot | 编辑部 |
 | **arteditor** | workspace-arteditor | 美术编辑 | @zzxx513art_bot | 编辑部 |
 | **infocollecter** | workspace-infocollecter | 信息收集 | @zzxx513info_bot | 编辑部 |
+| **legal** (小法) | workspace-lawyer | 法务顾问 | 待配置 | - |
 
 注意：这些是**独立的agent实例**，不是subagent。subagent是从主会话派生的短时任务助手。
 
