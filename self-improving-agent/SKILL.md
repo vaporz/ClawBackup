@@ -1,3 +1,13 @@
+---
+name: self-improving-agent
+description: >
+  Logs learnings, errors, and corrections to OpenClaw workspace memory for continuous improvement.
+  Activate when a command/operation fails, user provides corrections or feedback, or a feature is requested.
+metadata:
+  openclaw:
+    homepage: https://clawhub.com
+---
+
 # Self-Improvement Agent Skill
 
 Description: Logs learnings, errors, and corrections to OpenClaw workspace memory for continuous improvement. When using this skill, you create entries in the .learnings directory under your OpenClaw workspace to record learnings and improvements.

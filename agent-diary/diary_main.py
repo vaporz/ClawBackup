@@ -22,10 +22,42 @@ class DiarySkill:
         """初始化日记Skill
         
         Args:
-            workspace_path: 工作空间路径，默认为~/.openclaw/workspace-writer
+            workspace_path: 工作空间路径，必须提供
         """
         if workspace_path is None:
-            self.workspace_path = os.path.expanduser("~/.openclaw/workspace-writer")
+            # 尝试从环境变量获取当前agent的workspace
+            env_workspace = os.environ.get("OPENCLAW_WORKSPACE")
+            if env_workspace:
+                self.workspace_path = env_workspace
+            else:
+                # 如果环境变量也没有，使用传统方式但记录警告
+                default_path = os.path.expanduser("~/.openclaw/workspace")
+                if os.path.exists(default_path):
+                    self.workspace_path = default_path
+                else:
+                    # 最后尝试猜测当前agent的workspace
+                    import inspect
+                    try:
+                        # 尝试获取调用者的文件路径来推断workspace
+                        frame = inspect.currentframe()
+                        caller_frame = frame.f_back
+                        caller_file = caller_frame.f_code.co_filename
+                        # 从文件路径中提取可能的workspace
+                        if "/.openclaw/agents/" in caller_file:
+                            parts = caller_file.split("/.openclaw/agents/")
+                            if len(parts) > 1:
+                                agent_part = parts[1].split("/")[0]
+                                guessed_path = os.path.expanduser(f"~/.openclaw/workspace-{agent_part}")
+                                if os.path.exists(guessed_path):
+                                    self.workspace_path = guessed_path
+                                else:
+                                    raise ValueError(f"无法确定workspace路径。请提供workspace_path参数。尝试的路径不存在: {guessed_path}")
+                            else:
+                                raise ValueError("无法确定workspace路径。请提供workspace_path参数。")
+                        else:
+                            raise ValueError("无法确定workspace路径。请提供workspace_path参数。")
+                    except Exception as e:
+                        raise ValueError(f"无法确定workspace路径: {e}. 请显式提供workspace_path参数。")
         else:
             self.workspace_path = workspace_path
             

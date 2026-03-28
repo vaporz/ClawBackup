@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "created_at": "2026-03-27T10:32:31.246777",
-  "workspace_path": "/home/zx/.openclaw/workspace-writer",
+  "created_at": "2026-03-28T07:27:13.386593",
+  "workspace_path": null,
   "settings": {
     "daily_time": "02:00",
     "weekly_review_day": "sunday",
@@ -11,9 +11,9 @@
     "encryption_password": null
   },
   "directories": {
-    "diary": "diary",
-    "flash_notes": "diary/flash-notes",
-    "reviews": "diary/reviews",
-    "principles": "diary/principles"
+    "diary": ".diary",
+    "flash_notes": ".diary/flash-notes",
+    "reviews": ".diary/reviews",
+    "principles": ".diary/principles"
   }
 }

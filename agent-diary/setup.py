@@ -81,7 +81,7 @@ def create_config_file():
     config = {
         "version": "1.0",
         "created_at": datetime.datetime.now().isoformat(),
-        "workspace_path": os.path.expanduser("~/.openclaw/workspace-writer"),
+        "workspace_path": None,
         "settings": {
             "daily_time": "02:00",
             "weekly_review_day": "sunday",
@@ -236,6 +236,13 @@ def main():
     # 显示cron配置
     cron_config = setup_cron_jobs()
     print("\n✓ 定时任务配置已生成")
+    
+    print("\n⚠️  ⚠️  ⚠️  重要提醒 ⚠️  ⚠️  ⚠️")
+    print("=" * 60)
+    print("这个脚本只生成配置，不会自动创建定时任务！")
+    print("你需要手动运行以下OpenClaw命令来创建cron任务：")
+    print("=" * 60)
+    
     print("\n需要手动设置的定时任务：")
     print("=" * 50)
     
@@ -244,13 +251,21 @@ def main():
         print(f"  描述: {job_config['description']}")
         print(f"  时间: {job_config['schedule']['expr']} ({job_config['schedule']['tz']})")
         print(f"  消息: {job_config['payload']['message'][:50]}...")
+        
+        # 提供具体的OpenClaw命令示例
+        print(f"\n  创建命令示例：")
+        print(f"  openclaw cron add --name \"{job_config['name']}\" \\")
+        print(f"    --schedule \"{job_config['schedule']['expr']}\" \\")
+        print(f"    --payload '{json.dumps(job_config['payload'], ensure_ascii=False)}'")
     
     print("\n" + "=" * 50)
     print("\n设置完成！")
-    print("\n下一步：")
-    print("1. 使用OpenClaw的cron工具设置定时任务")
-    print("2. 开始使用：说'写日记'或'记录闪念：[内容]'")
-    print("3. 查看USAGE_GUIDE.md获取详细说明")
+    print("\n📋 下一步操作：")
+    print("1. ⚠️  重要：手动运行上面的OpenClaw命令创建cron任务")
+    print("2. 验证任务：运行 'openclaw cron list' 查看已创建的任务")
+    print("3. 开始使用：说'写日记'或'记录闪念：[内容]'")
+    print("4. 查看USAGE_GUIDE.md获取详细说明")
+    print("\n💡 提示：如果你不确定如何运行这些命令，可以请求管理员帮助。")
 
 if __name__ == "__main__":
     main()
