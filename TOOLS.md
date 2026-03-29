@@ -86,7 +86,10 @@ python3 scripts/web_search_volc.py "月球全景图 高清" image
 
 ### 图片库管理
 
-图片库存放路径：`/home/zx/.openclaw/workspace-arteditor/image-library/`
+**公共图库路径**：`/mnt/d/编辑部/素材图库/`（编辑部共享）
+**工作区软连接**：`/home/zx/.openclaw/workspace-arteditor/image-library/`
+
+目录结构：
 - `raw/` - 原始下载图片
 - `compressed/` - 压缩处理后图片 (用于识别)
 - `descriptions/` - 图片描述文本文件

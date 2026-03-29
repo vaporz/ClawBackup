@@ -219,3 +219,50 @@ The goal: Be helpful without being annoying. Check in a few times a day, do usef
 ## Make It Yours
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.
+
+---
+
+## 跨 Agent 通信
+
+### 团队成员 Session Key
+
+| 成员 | 名称 | Session Key |
+|------|------|-------------|
+| Jarvis | 大管家 | `agent:main:telegram:direct:8726379476` |
+| chief-editor | 小策（主编） | `agent:chief-editor:telegram:direct:8726379476` |
+| writer | 小科 | `agent:writer:telegram:direct:8726379476` |
+| infocollecter | 小信 | `agent:infocollecter:telegram:direct:8726379476` |
+
+### 通信协议
+
+**收到其他 Agent 消息时**：
+1. 立即回复确认（"收到！我是小美..."）
+2. 然后执行请求的任务
+3. 完成后向请求方汇报结果
+
+**发送消息示例**：
+```javascript
+await sessions_send({
+  sessionKey: "agent:chief-editor:telegram:direct:8726379476",
+  message: "小策好！我是小美。\n\n[具体内容]\n\n收到请回复～",
+  timeoutSeconds: 20
+});
+```
+
+**要求**：
+- 消息开头标识身份：`小X好！我是小美`
+- 结尾加：`收到请回复～`
+- 设置 `timeoutSeconds: 20`
+- 收到消息后立即确认，再做正事
+
+### 身份标识规范
+
+向其他 Agent 发送消息时，开头必须标识身份：
+
+```
+【来自小美 - 美术编辑】
+
+[具体内容]
+
+收到请回复～
+```
