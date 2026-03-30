@@ -1,0 +1,242 @@
+# Workspace Cleaner 配置文件
+# 版本: 1.0
+
+# 清理策略
+# strict: 严格模式，只保留核心文件
+# balanced: 平衡模式（推荐），保留核心文件和近期工作文件
+# loose: 宽松模式，保留较多文件
+strategy: "balanced"
+
+# 文件保留规则
+retention:
+  # 核心文件：身份文件、团队文件等
+  core_files: "keep"           # 永远保留
+  
+  # 临时文件：.tmp, .log, .bak 等
+  temp_files: "archive_30d"    # 归档保留30天
+  
+  # 版本文件：同一文件的多个版本
+  version_files: "keep_latest" # 只保留最新版本
+  
+  # 缓存文件：临时缓存文件
+  cache_files: "delete_7d"     # 7天后删除
+  
+  # 草稿文件：未完成的草稿
+  draft_files: "archive_60d"   # 归档保留60天
+  
+  # 测试文件：测试相关文件
+  test_files: "archive_14d"    # 归档保留14天
+
+# 归档设置
+archive:
+  # 归档目录位置（相对工作区路径）
+  location: "./归档"
+  
+  # 组织方式
+  # monthly: 按月组织（推荐）
+  # yearly: 按年组织
+  # project: 按项目组织
+  organization: "monthly"
+  
+  # 是否保留文件元数据
+  keep_metadata: true
+  
+  # 归档文件命名格式
+  # 可用变量: {name}, {ext}, {date}, {time}, {type}
+  naming_pattern: "{name}_{date}{ext}"
+
+# 回收站设置
+recycle_bin:
+  # 是否启用回收站（推荐启用）
+  enabled: true
+  
+  # 文件保留天数
+  retention_days: 30
+  
+  # 是否自动清理过期文件
+  auto_cleanup: true
+  
+  # 回收站最大容量（MB），0表示无限制
+  max_size_mb: 1024
+
+# 定时任务设置
+scheduled:
+  # 是否启用定时清理
+  enabled: true
+  
+  # 清理频率
+  # daily: 每天
+  # weekly: 每周（推荐）
+  # monthly: 每月
+  frequency: "weekly"
+  
+  # 执行日期（frequency=weekly时有效）
+  # monday, tuesday, wednesday, thursday, friday, saturday, sunday
+  day_of_week: "sunday"
+  
+  # 执行时间（24小时制）
+  time: "22:00"
+  
+  # 是否在低负载时执行
+  low_priority: true
+
+# 通知设置
+notifications:
+  # 清理完成时通知
+  on_complete: true
+  
+  # 发现问题时通知
+  on_problem: true
+  
+  # 达到阈值时通知（如空间不足）
+  on_threshold: true
+  
+  # 通知方式
+  # console: 控制台输出
+  # log: 记录到日志文件
+  # system: 系统通知
+  method: "console"
+
+# 文件识别规则（高级配置）
+file_rules:
+  # 核心文件列表
+  core_files:
+    - "IDENTITY.md"
+    - "SOUL.md"
+    - "USER.md"
+    - "AGENTS.md"
+    - "MEMORY.md"
+    - "TOOLS.md"
+    - "HEARTBEAT.md"
+    - "公司业务深度分析报告.md"
+    - "编辑部入职手册.md"
+  
+  # 临时文件模式
+  temp_patterns:
+    - "*.tmp"
+    - "*.temp"
+    - "*.bak"
+    - "*.backup"
+    - "*.log"
+    - "*.debug"
+    - "*.error"
+  
+  # 版本文件关键词
+  version_keywords:
+    - "-v"
+    - "_v"
+    - "版本"
+    - "version"
+    - "副本"
+    - "copy"
+    - "old"
+    - "new"
+  
+  # 测试文件关键词
+  test_keywords:
+    - "test_"
+    - "_test."
+    - "debug_"
+    - "示例"
+    - "example"
+    - "demo"
+  
+  # 草稿文件关键词
+  draft_keywords:
+    - "草稿"
+    - "draft"
+    - "初稿"
+    - "rough"
+    - "未完成"
+    - "todo"
+
+# 排除规则
+exclusions:
+  # 排除的目录
+  directories:
+    - ".git"
+    - ".openclaw"
+    - "node_modules"
+    - "__pycache__"
+    - ".venv"
+    - "归档"  # 归档目录本身
+  
+  # 排除的文件模式
+  files:
+    - ".*"           # 隐藏文件
+    - "*.pyc"
+    - "*.pyo"
+    - "*.so"
+    - "*.dll"
+  
+  # 排除的文件大小阈值（MB），0表示无限制
+  max_file_size_mb: 100
+
+# 性能设置
+performance:
+  # 最大并发文件处理数
+  max_concurrent: 10
+  
+  # 扫描深度限制，0表示无限制
+  max_depth: 5
+  
+  # 是否启用缓存
+  enable_cache: true
+  
+  # 缓存过期时间（小时）
+  cache_ttl_hours: 24
+
+# 日志设置
+logging:
+  # 日志级别：debug, info, warning, error
+  level: "info"
+  
+  # 日志文件位置
+  file: "./清理日志.log"
+  
+  # 是否轮转日志
+  rotate: true
+  
+  # 最大日志文件大小（MB）
+  max_size_mb: 10
+  
+  # 保留的日志文件数
+  backup_count: 5
+
+# 集成设置
+integrations:
+  # 与Agent Diary集成
+  agent_diary:
+    enabled: true
+    log_cleanup: true
+    link_archives: true
+  
+  # 与工作日志集成
+  work_log:
+    enabled: true
+    log_details: true
+  
+  # 与监控系统集成
+  monitoring:
+    enabled: false
+    endpoint: ""  # 监控API端点
+
+# 高级功能
+advanced:
+  # 是否启用机器学习优化
+  ml_optimization: false
+  
+  # 是否分析文件内容（需要更多资源）
+  content_analysis: false
+  
+  # 是否生成可视化报告
+  visual_reports: false
+  
+  # 是否启用预测性清理
+  predictive_cleanup: false
+
+# 注释：
+# 1. 修改配置后需要重启清理器或重新加载配置
+# 2. 路径可以使用相对路径（相对于工作区）或绝对路径
+# 3. 时间格式：HH:MM（24小时制）
+# 4. 大小单位：MB（兆字节）

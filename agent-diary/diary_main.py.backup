@@ -167,30 +167,10 @@ class DiarySkill:
         with open(diary_path, 'w', encoding='utf-8') as f:
             f.write(diary_content)
         
-        # 检查是否需要执行回顾（新增逻辑）
-        review_results = []
-        
-        # 1. 如果是周一，执行周回顾
-        if self.today.weekday() == 0:  # 0代表周一
-            weekly_result = self.weekly_review()
-            review_results.append({
-                "type": "weekly_review",
-                "result": weekly_result
-            })
-        
-        # 2. 如果是1日，执行月回顾
-        if self.today.day == 1:
-            monthly_result = self.monthly_review()
-            review_results.append({
-                "type": "monthly_review", 
-                "result": monthly_result
-            })
-        
         return {
             "status": "created",
             "path": diary_path,
-            "content": diary_content,
-            "reviews_performed": review_results
+            "content": diary_content
         }
     
     def record_flash_note(self, note: str) -> Dict[str, Any]:

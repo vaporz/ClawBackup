@@ -27,7 +27,7 @@ def setup_cron_jobs():
             },
             "payload": {
                 "kind": "agentTurn",
-                "message": "现在是凌晨2点，开始写今天的日记吧。请回顾今天的工作和经历，放松自然地写下你的思考和感受。",
+                "message": "写日记",
                 "model": "deepseek/deepseek-chat"
             },
             "sessionTarget": "current",
@@ -45,7 +45,7 @@ def setup_cron_jobs():
             },
             "payload": {
                 "kind": "agentTurn",
-                "message": "现在是周回顾时间。请回顾过去一周的日记，提炼主题、分析情绪趋势、总结学习收获，并思考可以提炼出什么人生原则。",
+                "message": "周回顾",
                 "model": "deepseek/deepseek-chat"
             },
             "sessionTarget": "current",
@@ -63,7 +63,7 @@ def setup_cron_jobs():
             },
             "payload": {
                 "kind": "agentTurn", 
-                "message": "现在是月回顾时间。请回顾过去一个月的日记和每周回顾，进行深度反思，提炼人生原则，更新个人哲学体系。",
+                "message": "月回顾",
                 "model": "deepseek/deepseek-chat"
             },
             "sessionTarget": "current",
@@ -256,7 +256,8 @@ def main():
         print(f"\n  创建命令示例：")
         print(f"  openclaw cron add --name \"{job_config['name']}\" \\")
         print(f"    --schedule \"{job_config['schedule']['expr']}\" \\")
-        print(f"    --payload '{json.dumps(job_config['payload'], ensure_ascii=False)}'")
+        print(f"    --payload '{json.dumps(job_config['payload'], ensure_ascii=False)}' \\")
+        print(f"    --agentId [你的agentId]")
     
     print("\n" + "=" * 50)
     print("\n设置完成！")
