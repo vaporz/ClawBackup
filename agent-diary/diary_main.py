@@ -113,22 +113,47 @@ class DiarySkill:
         """
         diary_path = self.get_today_diary_path()
         
-        # 检查是否已经写过今天的日记
-        if os.path.exists(diary_path):
-            with open(diary_path, 'r', encoding='utf-8') as f:
-                existing_content = f.read()
-            
-            return {
-                "status": "already_exists",
-                "path": diary_path,
-                "content": existing_content[:500] + "..." if len(existing_content) > 500 else existing_content
-            }
-        
         # 准备日记内容
         time_str = self.today.strftime("%Y年%m月%d日 %H:%M")
         weekday = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"][self.today.weekday()]
         
-        # 构建日记内容
+        # 检查是否已经写过今天的日记
+        if os.path.exists(diary_path):
+            # 读取现有内容
+            with open(diary_path, 'r', encoding='utf-8') as f:
+                existing_content = f.read()
+            
+            # 准备追加的内容
+            append_content = f"\n\n---\n\n## 继续写作 - {time_str}\n\n"
+            
+            # 如果有闪念记录，整合进来
+            if flash_notes:
+                append_content += "### 新的闪念\n"
+                append_content += flash_notes + "\n\n"
+            
+            # 添加继续写作的引导
+            append_content += """### 继续写吧
+
+可以继续思考：
+
+1. 还有什么想记录的？
+2. 刚才写完后有什么新的想法？
+3. 此刻的心情有什么变化？
+
+"""
+            
+            # 追加到文件
+            with open(diary_path, 'a', encoding='utf-8') as f:
+                f.write(append_content)
+            
+            return {
+                "status": "appended",
+                "path": diary_path,
+                "existing_content_length": len(existing_content),
+                "appended_content": append_content[:500] + "..." if len(append_content) > 500 else append_content
+            }
+        
+        # 构建新的日记内容
         diary_content = f"""# {self.date_str} {weekday}
 
 现在是{time_str}，开始写今天的日记。
