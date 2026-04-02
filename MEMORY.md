@@ -12,10 +12,16 @@ This file stores curated memories, significant decisions, and lessons learned to
   - 时间：每天凌晨1点（Asia/Shanghai时区）
   - 内容：回顾工作进展、学习收获、遇到的问题、明天的计划
   
-- **日记文件整理规范（啸的建议）：**
+- **日记文件整理规范（啸的建议 + agent diary skill规范）：**
   - **memory/** 目录 → 事务性、工作相关记录
-  - **diary/** 目录 → 个人小天地，放松写日记，记录心情、感悟和成长
-  - 日记文件命名格式：YYYY-MM-DD.md
+  - **.diary/** 目录 → 个人小天地，放松写日记，记录心情、感悟和成长
+  - **文件命名规则**：YYYY-MM-DD.md（必须是写日记当天的日期）
+  - **保存位置**：.diary/YYYY/MM/YYYY-MM-DD.md
+  - **唯一性**：某一天的日记文件最多只有一个，如果已存在则追加内容
+  - **三层记忆管理系统**：
+    1. 工作日志 (.diary/logs/) - 事实依据，保留3个月
+    2. 知识库 (.diary/knowledge/) - 背景知识，保留6个月
+    3. 个人日记 (.diary/YYYY/MM/) - 个人反思，永久保留
 
 - **专业信息搜索核心技能（2026-03-30重大突破）：**
   - **Tavily Search工具**：支持site:语法（include_domains参数）的专业搜索工具
@@ -79,7 +85,8 @@ This file stores curated memories, significant decisions, and lessons learned to
   - **内容**：回顾工作进展、学习收获、问题反思、明日计划
   - **格式**：结构化日记，包含成就、问题、计划、感悟
   - **价值**：建立工作连续性，促进自我反思和成长
-  - **文件位置**：memory/YYYY-MM-DD.md（工作记录）
+  - **文件位置**：.diary/YYYY/MM/YYYY-MM-DD.md（个人日记）
+  - **重要更新（2026-04-01）**：重新学习了agent diary skill，修正了日记保存位置。日记必须保存在.diary目录下，memory目录用于工作记录。
 
 - **信息收集工作反思（2026-04-01）：**
   - **愚人节的责任**：在信息爆炸的时代，信息真实性和准确性至关重要
