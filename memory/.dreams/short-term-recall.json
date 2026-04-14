@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "updatedAt": "2026-04-13T23:07:34.814Z",
+  "entries": {
+    "memory:memory/2026-03-29.md:1:23": {
+      "key": "memory:memory/2026-03-29.md:1:23",
+      "path": "memory/2026-03-29.md",
+      "startLine": 1,
+      "endLine": 23,
+      "source": "memory",
+      "snippet": "## 2026-03-29 关键进展记录 ### 上午：系统架构优化决策 1. **ZeroClaw架构评估**：经过深入分析，决定暂不迁移到ZeroClaw架构，采取\"以不变应万变\"策略 - 理由：技术快速迭代期，过早重构边际收益有限 - 决策：观察OpenClaw更新，优先优化现有架构 ### 监控系统建立 2. **全局通信监控框架**：建立了完整的OpenClaw agent间通信监控系统 - 位置：`/home/zx/.openclaw/workspace/scripts/monitoring/` - 功能：实时记录通信、计算延迟成功率、异常检测（30秒超时、3次连续失败、95%成功率） - 日志：统一存储在`.logs/communication/`和`.logs/healthcheck/` - 计划任务：每小时健康检查、每天版本检查、每周通信报告 3. **小策集成成功**：chief-editor agent成功集成监控框架 - 创建了`monitoredSessionsSend`包装函数 - 测试发现通信成功率仅40%（5次测试中2次成功） - 确认了sessions_send调用确实存在超时问题 - 明日计划：分析现有调用，逐步替换为监控版本 ### 日记系统优化 4. **统一日记系统部署**：将18个分散的日记cron job优化为6个统一任务 - 每个agent一个`unified-diary.sh`脚本",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 0.3958248764276504,
+      "maxScore": 0.3958248764276504,
+      "firstRecalledAt": "2026-04-13T23:07:34.814Z",
+      "lastRecalledAt": "2026-04-13T23:07:34.814Z",
+      "queryHashes": [
+        "c61f5efa5507"
+      ],
+      "recallDays": [
+        "2026-04-14"
+      ],
+      "conceptTags": [
+        "home/zx",
+        "logs/communication",
+        "logs/healthcheck",
+        "chief-editor",
+        "确认了sessions-send调用确实存在超时问题",
+        "unified-diary.sh",
+        "关键",
+        "进展"
+      ]
+    }
+  }
+}
